@@ -38,10 +38,10 @@ app.register(fastifyFormbody, {
 });
 
 // @ts-nocheck
-// app.addHook('onSend', (req, reply, payload, next) => {
-//   console.log(payload);
-//   next();
-// });
+app.addHook('onSend', (req, reply, payload, next) => {
+  console.log(payload);
+  next();
+});
 
 // Add schema validator and serializer
 app.setValidatorCompiler(validatorCompiler);
@@ -172,7 +172,7 @@ app.withTypeProvider<ZodTypeProvider>().route({
       action: 1,
       sign_time: body.sign_time,
     }, body.sign_string);
-
+    
     if (!isValid) {
       return res.send({
         click_trans_id: 0,

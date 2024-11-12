@@ -14,7 +14,8 @@ interface Params {
 export default function checkSign(params: Params, sign: string) {
   // Order of params is important
   const toBeHashedString = `${params.click_trans_id}${params.service_id}${params.secret_key}${params.merchant_trans_id}${params.merchant_prepare_id ?? ''}${params.amount}${params.action}${params.sign_time}`;
+  console.log('toBeHashedString', toBeHashedString);
   const hash = md5(toBeHashedString);
-
+  console.log('hash', hash);
   return hash === sign;
 }
